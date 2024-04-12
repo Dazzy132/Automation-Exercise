@@ -1,0 +1,23 @@
+[
+  {
+    "name": "test-name",
+    "email": "test_email@mail.ru",
+
+    "title": "Mr",
+    "edited_name": "test-name2",
+    "password": "pasSword123",
+    "receive_newsletters": true,
+    "receive_offers": true,
+    "date_or_birth": "20-3-2000",
+    "first_name": "first",
+    "last_name": "last",
+    "company": "company1",
+    "address1": "address1",
+    "address2": null,
+    "country": "Australia",
+    "state": "state",
+    "city": "City1",
+    "zipcode": 35000,
+    "mobile_number": "79182222222"
+  }
+]
