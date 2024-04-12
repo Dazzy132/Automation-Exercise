@@ -2,7 +2,6 @@
   {
     "name": "test-name",
     "email": "test_email@mail.ru",
-
     "title": "Mr",
     "edited_name": "test-name2",
     "password": "pasSword123",
