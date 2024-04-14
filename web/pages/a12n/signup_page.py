@@ -83,11 +83,12 @@ class SignUpPage(WebPage):
     def enter_account_information_data(self, data: AccountInfo):
         """Ввести в поля дополнительную информацию об аккаунте"""
 
-        with allure.step(f"Вводим гендер {data['title']}"):
-            self.find_element(
-                AccountInfLocator.GENDER_MR_RADIO if data["title"].lower() == "mr"
-                else AccountInfLocator.GENDER_MRS_RADIO
-            ).click()
+        if data["title"]:
+            with allure.step(f"Вводим гендер {data['title']}"):
+                self.find_element(
+                    AccountInfLocator.GENDER_MR_RADIO if data["title"].lower() == "mr"
+                    else AccountInfLocator.GENDER_MRS_RADIO
+                ).click()
 
         if data["edited_name"]:
             with allure.step(f"Изменяем имя с {data['name']} на {data['edited_name']}"):
@@ -98,11 +99,12 @@ class SignUpPage(WebPage):
         with allure.step(f"Вводим пароль {data['password']}"):
             self.find_element(AccountInfLocator.PASSWORD_INPUT).send_keys(data["password"])
 
-        d, m, y = data["date_or_birth"].split("-")
-        with allure.step(f"Вводим дату рождения {d}-{m}-{y}"):
-            Select(self.find_element(AccountInfLocator.BIRTH_DAY_SELECT)).select_by_value(d)
-            Select(self.find_element(AccountInfLocator.BIRTH_MONTH_SELECT)).select_by_value(m)
-            Select(self.find_element(AccountInfLocator.BIRTH_YEAR_SELECT)).select_by_value(y)
+        if data["date_or_birth"]:
+            d, m, y = data["date_or_birth"].split("-")
+            with allure.step(f"Вводим дату рождения {d}-{m}-{y}"):
+                Select(self.find_element(AccountInfLocator.BIRTH_DAY_SELECT)).select_by_value(d)
+                Select(self.find_element(AccountInfLocator.BIRTH_MONTH_SELECT)).select_by_value(m)
+                Select(self.find_element(AccountInfLocator.BIRTH_YEAR_SELECT)).select_by_value(y)
 
         if data["receive_newsletters"]:
             with allure.step("Подписываемся на рассылку новостей"):
@@ -129,8 +131,9 @@ class SignUpPage(WebPage):
             with allure.step(f"Вводим дополнительный адрес {data['address2']}"):
                 self.find_element(AccountInfLocator.ADDRESS2_INPUT).send_keys(data["address2"])
 
-        with allure.step(f"Вводим страну {data['country']}"):
-            Select(self.find_element(AccountInfLocator.COUNTRY_SELECT)).select_by_value(data["country"])
+        if data["country"]:
+            with allure.step(f"Вводим страну {data['country']}"):
+                Select(self.find_element(AccountInfLocator.COUNTRY_SELECT)).select_by_value(data["country"])
 
         with allure.step(f"Вводим штат {data['state']}"):
             self.find_element(AccountInfLocator.STATE_INPUT).send_keys(data["state"])

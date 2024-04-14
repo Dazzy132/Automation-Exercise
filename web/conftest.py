@@ -6,6 +6,7 @@ import pytest
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.remote.webelement import WebElement
 
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -35,3 +36,12 @@ def get_registration_params():
 
     with open(filepath, "r", encoding="UTF-8") as reg_params:
         return json.load(reg_params)
+
+
+def fill_input_fields(elements_to_fill: dict[str, WebElement], params_to_fill: dict[str, str]):
+    """
+    :param elements_to_fill: [email_field: WebElement]
+    :param params_to_fill: [email: email@mail.ru]
+    """
+    for field_name, element in elements_to_fill.items():
+        element.send_keys(params_to_fill[field_name])

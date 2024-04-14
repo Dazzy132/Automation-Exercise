@@ -4,7 +4,7 @@ from typing import TypedDict, Optional
 class AccountInfo(TypedDict):
     name: str
     email: str
-    title: str
+    title: Optional[str]
     edited_name: Optional[str]
     password: str
     date_or_birth: str
